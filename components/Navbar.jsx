@@ -20,7 +20,7 @@ const Navbar = () => {
     const [state, setState] = React.useState(false)
     const [value, setValue] = React.useState('h');
     const [profileicon, setProfile] = React.useState([
-        // { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
+        { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
         { img: 'interstellar.jpg', quote: 'Love is the one thing we\'re capable of perceiving that transcends time and space', by: 'Interstellar' },
         { img: 'batman.jpeg', quote: 'It\'s not who I am underneath, but what I do that defines me', by: 'Batman' },
         { img: 'spiderman.jpg', quote: 'With great power comes great responsibility', by: 'Spiderman' },
