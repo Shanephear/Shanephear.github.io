@@ -41,7 +41,7 @@ const Portfolio = () => {
                 <div className="flex flex-col items-center gap-4 text-center">
                     <div className='location h-10 text-color-level-3 font-black' id="current-time">{time}</div>
                     <div className="profile-circle-lg">
-                        <Image alt='Profile image' src="/profile.svg"/>
+                        <img alt='Profile image' src="/profile.svg"/>
                         <div></div>
                     </div>
                     <div>

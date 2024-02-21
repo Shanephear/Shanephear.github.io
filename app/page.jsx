@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import Image from 'next/image';
 var rendered = false;
 const Home = () => {
   useEffect(() => {

@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Tooltip from '@mui/material/Tooltip';
 import CloseIcon from '@mui/icons-material/Close';
-import Image from "next/image";
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
@@ -21,7 +20,7 @@ const Navbar = () => {
     const [state, setState] = React.useState(false)
     const [value, setValue] = React.useState('h');
     const [profileicon, setProfile] = React.useState([
-        { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
+        // { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
         { img: 'interstellar.jpg', quote: 'Love is the one thing we\'re capable of perceiving that transcends time and space', by: 'Interstellar' },
         { img: 'batman.jpeg', quote: 'It\'s not who I am underneath, but what I do that defines me', by: 'Batman' },
         { img: 'spiderman.jpg', quote: 'With great power comes great responsibility', by: 'Spiderman' },
@@ -128,7 +127,7 @@ const Navbar = () => {
                 <div onClick={handleClick} className="cursor-pointer flex align-center">
                     {ltmed ? darkmodebtn() : <></>}
                     <div className="profile-circle">
-                        <Image alt="Profile image" src={`./${profileicon[0].img}`} />
+                        <img alt="Profile image" src={`./${profileicon[0].img}`} />
                         <div></div>
                     </div>
                 </div>
