@@ -20,12 +20,11 @@ const Navbar = () => {
     const [state, setState] = React.useState(false)
     const [value, setValue] = React.useState('h');
     const [profileicon, setProfile] = React.useState([
-        { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
-        { img: 'interstellar.jpg', quote: 'Love is the one thing we\'re capable of perceiving that transcends time and space', by: 'Interstellar' },
         { img: 'batman.jpeg', quote: 'It\'s not who I am underneath, but what I do that defines me', by: 'Batman' },
         { img: 'spiderman.jpg', quote: 'With great power comes great responsibility', by: 'Spiderman' },
-        { img: 'naruto.png', quote: 'Failing doesn\'t give you a reason to give up, as long as you believe.', by: 'Naruto' }
-
+        { img: 'naruto.png', quote: 'Failing doesn\'t give you a reason to give up, as long as you believe.', by: 'Naruto' },
+        { img: 'icon.svg', quote: 'Code never lies,comments somtimes do', by: 'Ron Jeffries' },
+        { img: 'interstellar.jpg', quote: 'Love is the one thing we\'re capable of perceiving that transcends time and space', by: 'Interstellar' }
     ])
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [ltmed, setLtmed] = useState(false)
@@ -124,9 +123,9 @@ const Navbar = () => {
             </BottomNavigation>}
             <nav className="top-nav">
                 <Link className="w-full logo-txt " href="/">Exibit.H</Link>
-                <div onClick={handleClick} className="cursor-pointer flex align-center">
+                <div className="flex align-center">
                     {ltmed ? darkmodebtn() : <></>}
-                    <div className="profile-circle">
+                    <div onClick={handleClick} className="cursor-pointer profile-circle">
                         <img alt="Profile image" src={`./${profileicon[0].img}`} />
                         <div></div>
                     </div>
