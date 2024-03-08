@@ -4,8 +4,7 @@ import { CssBaseline, createTheme } from "@mui/material"
 import { ThemeProvider } from "@emotion/react"
 import { Inter, Questrial, DM_Mono } from "next/font/google";
 import React, { useEffect } from "react";
-import { ColorModeContext } from "./Navbar";
-
+export const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 const inter = Inter({
     weight: ["300", "400", "500", "700"],
     style: ["normal"],
@@ -33,8 +32,8 @@ const light_theme = {
         contrastText: '#F8FAFD'
     },
     background: {
-        default: "#ffffff",
-        paper: '#F8FAFD',
+        default: "#f4f6fc",
+        paper: '#ffffff',
     },
     text: {
         primary: '#2E2E2E'
@@ -46,8 +45,8 @@ const dark_theme = {
         contrastText: '#444746'
     },
     background: {
-        default: "#131314",
-        paper: '#28292A',
+        default: "#101010",
+        paper: '#1e1e1e',
     },
     text: {
         primary: '#E3E3E3'
@@ -71,6 +70,18 @@ const Themeregistry = ({ children }) => {
     const theme = React.useMemo(
         () =>
             createTheme({
+                components:{
+                    MuiCard:{
+                        defaultProps:{
+                            elevation: mode == 'dark' ? 1 : 3,
+                        },
+                        // styleOverrides:{
+                        //     root:{
+                        //         backgroundImage: 'unset'
+                        //     }
+                        // }
+                    }
+                },
                 typography: {
                     fontSize: 12,
                     fontFamily: inter.style.fontFamily,

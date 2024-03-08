@@ -2,7 +2,7 @@
 import { BottomNavigation, BottomNavigationAction, IconButton, Snackbar } from "@mui/material"
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import { questrial } from "@components/themeregistry";
+import { ColorModeContext, questrial } from "@components/themeregistry";
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import Link from "next/link";
@@ -14,7 +14,7 @@ import React from "react";
 import Tooltip from '@mui/material/Tooltip';
 import CloseIcon from '@mui/icons-material/Close';
 
-export const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
+
 
 const Navbar = () => {
     const [state, setState] = React.useState(false)
@@ -122,11 +122,11 @@ const Navbar = () => {
                 <BottomNavigationAction component={Link} href="/portfolio/resume" value="i" label="Resume" icon={<InsertDriveFileOutlinedIcon />} />
             </BottomNavigation>}
             <nav className="top-nav">
-                <div className="w-full"><Link className="logo-txt" href="/">Exibit.H</Link></div>
-                <div className="flex align-center">
+                <Link className={`w-full logo-txt ${ pathname !== '/'? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link>
+                <div className="cursor-pointer flex align-center">
                     {ltmed ? darkmodebtn() : <></>}
-                    <div onClick={handleClick} className="cursor-pointer profile-circle">
-                        <img alt="Profile image" src={`./${profileicon[0].img}`} />
+                    <div onClick={handleClick} className="profile-circle">
+                        <img alt="Profile image" src={`/${profileicon[0].img}`} />
                         <div></div>
                     </div>
                 </div>

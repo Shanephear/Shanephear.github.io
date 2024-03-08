@@ -6,12 +6,17 @@
 @mixin setCustomProperties($isDark) {
     --h1-size: 3.5rem;
     --h2-size: 2.5rem;
-    --h3-size: 1.5rem;
+    --h3-size: 2rem;
+    --h4-size: 1.5rem;
+    --h5-size: 1.25rem;
     --font-size-base-1: calc(1rem - 1px);
+    --success-color: #249a41;
+    --danger-color: #fd5151;
 
     @if $isDark {
-        --primary-background: #131314;
+        --primary-background: #101010;
         --primary-border: #343434;
+        --secondary-background: #1e1e1e;
 
         --primary-color: #E3E3E3;
         --primary-color-level2: #f0f4f9;
@@ -24,8 +29,9 @@
     }
 
     @else {
-        --primary-background: #ffffff;
-        --primary-border: #ededed;
+        --primary-background: #f4f6fc;
+        --primary-border: #d3dcdf;
+        --secondary-background: #ffffff;
 
         --primary-color: #2E2E2E;
         --primary-color-level2: #343434;
@@ -33,7 +39,7 @@
 
         --text-color-level1: #2E2E2E;
         --text-color-level2: #5f6367;
-        --text-color-level3: #A0A0A0;
+        --text-color-level3: #8b8d8b;
     }
 }
 
@@ -77,15 +83,24 @@ html {
 
 p {
     font-size: 1rem;
-    line-height: 1.5rem;
+    line-height: 1.7rem;
+}
+
+h5 {
+    font-size: var(--h5-size);
 }
 
 h1 {
     font-size: var(--h1-size);
+    line-height: 3.5rem;
 }
 
 h4 {
     font-size: var(--h4-size);
+}
+
+h3 {
+    font-size: var(--h3-size);
 }
 
 h2 {
@@ -112,6 +127,14 @@ hr {
     font-size: var(--font-size-base-1);
 }
 
+.text-success {
+    color: var(--success-color);
+}
+
+.text-danger {
+    color: var(--danger-color);
+}
+
 .pb-0-important {
     padding-bottom: 0 !important;
 }
@@ -129,8 +152,30 @@ button {
     font-size: calc(1rem - 1px) !important;
     text-transform: unset !important;
     border-radius: 0.5rem !important;
-
 }
+
+
+// Common 
+
+.app-container {
+    height: calc(100vh - 82px);
+    overflow: auto;
+    overflow-x: hidden;
+    margin-left: 64px;
+    margin-top: 82px;
+
+    @include breakpoint-lt-m {
+        margin-left: 0px;
+    }
+}
+
+.app-container>section {
+    @include breakpoint-lt-m {
+        padding: 16px;
+    }
+}
+
+// Portfolio
 
 button.portfolio {
     min-width: 12rem !important;
@@ -154,23 +199,6 @@ button.portfolio {
     background-color: transparent;
 }
 
-// variable
-
-
-.app-container {
-    margin-left: 64px;
-    margin-top: 82px;
-
-    @include breakpoint-lt-m {
-        margin-left: 0px;
-    }
-
-    section {
-        @include breakpoint-lt-m {
-            padding: 12px;
-        }
-    }
-}
 
 
 .about-container {
@@ -226,7 +254,14 @@ button.portfolio {
     height: 3rem;
     display: flex;
     align-items: center;
-    width: fit-content;
+}
+
+.logo-text-gradient {
+    color: transparent;
+    background: linear-gradient(74deg, #4285f4 0, #9b72cb 9%, #d96570 20%, #d96570 24%, #9b72cb 35%, #4285f4 44%, #9b72cb 50%, #d96570 56%, #232323 75%, #232323 100%);
+    background-size: 500px 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .profile-circle {
@@ -521,7 +556,6 @@ button.portfolio {
     border-radius: 8px !important;
     margin-right: 0.5rem;
     border-color: var(--text-color-level2) !important;
-    color: var(--text-color-level2) !important;
     font-weight: 500;
 }
 
@@ -588,5 +622,258 @@ button.portfolio {
         text-align: end;
         font-weight: 500;
         padding-top: 0.25rem;
+    }
+}
+
+.project-card {
+    border-radius: 24px !important;
+}
+
+.project-video {
+    height: calc(100vh - 100px) !important;
+
+    @include breakpoint-lt-m {
+        height: calc(60vh - 100px) !important;
+    }
+
+    .video-js {
+        height: calc(100vh - 100px) !important;
+
+        @include breakpoint-lt-m {
+            height: calc(60vh - 100px) !important;
+        }
+
+        width: 100% !important;
+        border-radius: 24px !important;
+    }
+
+    #project-video-card {
+        height: calc(100vh - 100px) !important;
+
+        @include breakpoint-lt-m {
+            height: calc(60vh - 100px) !important;
+        }
+
+        width: 100% !important;
+        border-radius: 24px !important;
+
+        #project-video-card-content {
+            height: 100%;
+        }
+    }
+}
+
+.python-container {
+    padding-top: 3rem;
+
+    .editor-container {
+        width: 100%;
+        height: 70vh;
+        position: relative;
+    }
+
+    .project-card {
+        width: 50%;
+    }
+
+    .input-output {
+        display: flex;
+        gap: 1rem;
+    }
+
+    @include breakpoint-lt-m {
+        padding-top: 1rem;
+
+        .input-output {
+            flex-wrap: wrap;
+        }
+
+        .editor-container {
+            height: 50vh;
+        }
+
+        .editor-container>section {
+            height: 50vh !important;
+        }
+
+        .project-card {
+            width: 100%;
+        }
+    }
+}
+
+.drop-zone {
+    height: 200px;
+    border: 1px dashed var(--text-color-level1);
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+
+.drop-zone-abs {
+    height: 200px;
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+.upload-icon {
+    font-size: 4rem !important;
+    margin-bottom: 0.5rem;
+    color: var(--text-color-level2);
+}
+
+.removefile {
+    position: absolute !important;
+    right: 0;
+    z-index: 3;
+    margin-right: 0.25rem !important;
+    margin-top: 0.25rem !important;
+}
+
+.vjs-button>.vjs-icon-placeholder:before {
+    line-height: 1.30em !important;
+    font-size: 22px !important;
+}
+
+.video-js .vjs-control-bar {
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.delete-progress {
+    height: 18px !important;
+    width: 18px !important;
+
+    svg {
+        font-size: 18px !important;
+    }
+}
+
+.delete-progress-div {
+    min-width: 36.57px;
+    min-height: 36.57px;
+}
+
+.circular-progress-video {
+    height: 18px !important;
+    width: 18px !important;
+    margin-right: 1rem;
+
+    svg {
+        font-size: 18px !important;
+    }
+}
+
+.complete-icon {
+    height: 20px !important;
+    width: 20px !important;
+    margin-right: 1rem;
+    color: var(--success-color) !important;
+
+    svg {
+        font-size: 20px !important;
+    }
+}
+
+.project-video-border {
+    border: 1px solid;
+    border-radius: 24px;
+}
+
+.upload-loader>div {
+    display: flex;
+    padding-bottom: 1rem;
+    align-items: center;
+
+    div {
+        min-width: 24px;
+    }
+}
+
+.python-loader {
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+}
+
+.code-paper {
+    border-radius: 8px !important;
+}
+
+.code-snippet {
+    padding: 16px;
+    background-color: black;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: var(--success-color);
+
+    button {
+        color: #ffffff !important;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+    }
+}
+
+.code-snippet-header {
+    padding: 2px;
+    padding-left: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.project-container {
+    @include breakpoint-lt-m {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+
+        .sub-container {
+            width: 100%;
+        }
+
+        .pt-8 {
+            padding-top: 0.5rem;
+        }
+
+        .pb-40 {
+            padding-bottom: 0px;
+        }
+    }
+}
+
+.pt-14 {
+    @include breakpoint-lt-m {
+        padding-top: 0px;
+    }
+}
+
+.common-loader {
+    .logo-txt {
+        font-size: 18px;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        right: calc(50% - 18px - 68px);
+        top: calc(50% - 68px);
+        height: 100px;
+        width: 100px;
+    }
+    .spinner {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        right: calc(50% - 68px);
+        top: calc(50% - 68px);
+        border-radius: 24px;
+        border: 1px solid;
     }
 }

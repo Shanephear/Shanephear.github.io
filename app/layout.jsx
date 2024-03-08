@@ -17,7 +17,7 @@ const RootLayout = ({ children }) => (
     <body>
       <AppRouterCacheProvider options={{ key: 'css' }}>
         <Themeregistry>
-        <Navbar />
+          <Navbar />
           <main className='root'>
             <div className="app-container">
               {children}
