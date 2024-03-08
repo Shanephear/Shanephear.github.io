@@ -17,7 +17,7 @@ const VideoPlayer = dynamic(() => import("@components/Videoplayer"), {
     loading:() => <>{Commonloading()}</>,
 });
 
-const page = () => {
+const Video = () => {
     // Initialization
     const demo_video_info = {
         title: 'How to run django backend',
@@ -476,4 +476,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Video

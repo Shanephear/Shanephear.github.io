@@ -63,7 +63,7 @@ const Home = () => {
                 <p className='font-black pb-4'>Web Assembly</p>
                 <p className='text-sm'>
                   WebAssembly (Wasm) is a low-level language that can run in web browsers.
-                  It's a binary instruction format for compiling and executing code in a client-side web browser.
+                  It&apos;s a binary instruction format for compiling and executing code in a client-side web browser.
                 </p>
               </CardContent>
             </CardActionArea>

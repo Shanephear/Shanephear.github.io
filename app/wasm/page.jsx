@@ -11,7 +11,7 @@ const VideoPlayer = dynamic(() => import("@components/Videoplayer"), {
     ssr: false,
     loading: () => <p>{Commonloading()}</p>,
 });
-const page = () => {
+const Wasm = () => {
     const [pyodide_initialized, setLoadingPyodide] = useState(false)
     const [encrypt_output, setEncrypt] = useState('')
     const [decrypt_output, setDecrypt] = useState('')
@@ -104,12 +104,12 @@ const page = () => {
             <div className='flex project-container gap-6'>
                 <div className="sub-container w-1/2 pt-8 pb-40">
                     <h1>Web Assembly</h1>
-                    <p className="my-4 text-color-level-2">WebAssembly (Wasm) is a low-level language that can run in web browsers. It's a binary instruction format for compiling and executing code in a client-side web browser.</p>
+                    <p className="my-4 text-color-level-2">WebAssembly (Wasm) is a low-level language that can run in web browsers. It&apos;s a binary instruction format for compiling and executing code in a client-side web browser.</p>
                     <div className="flex flex-col gap-4">
                         <div>
                             <h4 className="font-medium pb-2">Incorporating C program into the web using WebAssembly</h4>
                             <p className="text-color-level-2">
-                                A C source code which performs encrypting and decrypting is converted to wasm using "emscripten" (Emscripten is an LLVM/Clang-based compiler that compiles C and C++ source code to WebAssembly, primarily for execution in web browsers.) and is streamed here.The encrypt and decrypt function from the wasm file is binded to the encrypt and decrypt button below.
+                                A C source code which performs encrypting and decrypting is converted to wasm using &ldquo;emscripten&rdquo; (Emscripten is an LLVM/Clang-based compiler that compiles C and C++ source code to WebAssembly, primarily for execution in web browsers.) and is streamed here.The encrypt and decrypt function from the wasm file is binded to the encrypt and decrypt button below.
                             </p>
                         </div>
                         <p className="font-bold">Encrypt</p>
@@ -276,4 +276,4 @@ for y in reversed(finalArr):
     )
 }
 
-export default page
+export default Wasm
