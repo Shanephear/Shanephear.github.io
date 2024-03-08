@@ -122,10 +122,10 @@ const Navbar = () => {
                 <BottomNavigationAction component={Link} href="/portfolio/resume" value="i" label="Resume" icon={<InsertDriveFileOutlinedIcon />} />
             </BottomNavigation>}
             <nav className="top-nav">
-                <Link className={`w-full logo-txt ${ pathname !== '/'? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link>
-                <div className="cursor-pointer flex align-center">
+                <div className="w-full"><Link className={`logo-txt ${ pathname !== '/'? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link></div>
+                <div className="flex align-center">
                     {ltmed ? darkmodebtn() : <></>}
-                    <div onClick={handleClick} className="profile-circle">
+                    <div onClick={handleClick} className="profile-circle cursor-pointer">
                         <img alt="Profile image" src={`/${profileicon[0].img}`} />
                         <div></div>
                     </div>

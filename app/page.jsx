@@ -124,7 +124,7 @@ const Home = () => {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card component={Link} target='_blank' href='https://github.com/Shanephear/decision_t_reg_car' className='card' sx={{ maxWidth: 345 }}>
+          <Card component={Link} target='_blank' href='https://github.com/Shanephear/exibit-backend-django' className='card' sx={{ maxWidth: 345 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
