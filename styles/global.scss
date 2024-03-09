@@ -346,7 +346,7 @@ button.portfolio {
     @include breakpoint-lt-m {
         font-size: 2.5rem;
         line-height: 3.5rem;
-        text-wrap: wrap;
+        white-space: pre-line;
     }
 
     color: transparent;
@@ -562,6 +562,22 @@ button.portfolio {
 
 .nav-icon {
     font-size: 29px !important;
+}
+.nav-icon-exibit {
+    width: 29px;
+    font-size: 20px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--questrial-font);
+    color: transparent;
+    background: linear-gradient(74deg, #4285f4 0, #9b72cb 9%, #d96570 20%, #d96570 24%, #9b72cb 35%, #4285f4 44%, #9b72cb 50%, #d96570 56%, #232323 75%, #232323 100%);
+    background-size: 200px 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 1000;
+
 }
 
 .small-icon-level2 {

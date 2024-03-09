@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import Commonloading from "@components/loading";
 const VideoPlayer = dynamic(() => import("@components/Videoplayer"), {
     ssr: false,
-    loading: () => <p>{Commonloading()}</p>,
+    loading: () => <>{Commonloading()}</>,
 });
 const Wasm = () => {
     const [pyodide_initialized, setLoadingPyodide] = useState(false)
@@ -250,7 +250,7 @@ for y in reversed(finalArr):
                     </Card>
                     <Card className="project-card p-1">
                         <CardContent>
-                            <div className={`editor-container ${pyodide_error.length ? '' : 'overflow-auto'}`} id='output-section'>
+                            <div className='editor-container overflow-auto' id='output-section'>
                                 <h5 className="pb-4 font-bold">Output:</h5>
                                 {pyodide_output.length > 0 &&
                                     <>
@@ -258,7 +258,7 @@ for y in reversed(finalArr):
                                     </>
                                 }
                                 {pyodide_error.length > 0 &&
-                                    <pre className="text-danger text-wrap break-words">{pyodide_error}</pre>
+                                    <pre className="text-danger whitespace-pre-wrap">{pyodide_error}</pre>
                                 }
                             </div>
                         </CardContent>

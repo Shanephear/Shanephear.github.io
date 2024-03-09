@@ -1,5 +1,5 @@
 "use client"
-import { BottomNavigation, BottomNavigationAction, IconButton, Snackbar } from "@mui/material"
+import { BottomNavigation, BottomNavigationAction, IconButton, Snackbar,Button } from "@mui/material"
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { ColorModeContext, questrial } from "@components/themeregistry";
@@ -13,11 +13,21 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Tooltip from '@mui/material/Tooltip';
 import CloseIcon from '@mui/icons-material/Close';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 const Navbar = () => {
     const [state, setState] = React.useState(false)
+    const [dialogOpen, setDialogOpen] = useState(false)
     const [value, setValue] = React.useState('h');
     const [profileicon, setProfile] = React.useState([
         { img: 'batman.jpeg', quote: 'It\'s not who I am underneath, but what I do that defines me', by: 'Batman' },
@@ -61,11 +71,19 @@ const Navbar = () => {
 
     const darkmodebtn = () => {
         return (
-            <Tooltip title="Toggle Dark mode" placement="right" arrow>
-                <IconButton onClick={toggleDarkMode} sx={ltmed ? { marginRight: '1rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '2rem', borderRadius: '50% !important' }}>
-                    {isDarkMode ? <LightModeIcon color="primary" className="nav-icon" /> : <DarkModeIcon color="primary" className="nav-icon" />}
-                </IconButton>
-            </Tooltip>
+            <>
+                <Tooltip title="About the application" placement="right" arrow>
+                    <IconButton onClick={() => {setDialogOpen(true)}} sx={ltmed ? { marginRight: '1rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '1rem', borderRadius: '50% !important' }}>
+                        {/* <TipsAndUpdatesIcon color="primary" className="nav-icon-exibit"></TipsAndUpdatesIcon> */}
+                        <div className="nav-icon-exibit">t.H</div>
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Toggle Dark mode" placement="right" arrow>
+                    <IconButton onClick={toggleDarkMode} sx={ltmed ? { marginRight: '1rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '2rem', borderRadius: '50% !important' }}>
+                        {isDarkMode ? <LightModeIcon color="primary" className="nav-icon" /> : <DarkModeIcon color="primary" className="nav-icon" />}
+                    </IconButton>
+                </Tooltip>
+            </>
         )
     }
     const handleClick = () => {
@@ -84,6 +102,24 @@ const Navbar = () => {
 
     return (
         <div className={`${questrial.variable}`}>
+            <Dialog
+                open={dialogOpen}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={() => {setDialogOpen(false)}}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle><span className="logo-text-gradient text-2xl">Exibit.H</span></DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        The Application is built using Next.js a react framework, Tailwind for css, Material ui for components and
+                            design inspired from Material 3.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions className="p-4">
+                    <Button variant="outlined" onClick={() => {setDialogOpen(false)}}>Close</Button>
+                </DialogActions>
+            </Dialog>
             <Snackbar
                 className={`${!ltmed ? 'pr-12' : 'pb-12'} snackbar`}
                 anchorOrigin={ltmed ? { vertical: 'bottom', horizontal: 'center' } : { vertical: 'top', horizontal: 'right' }}
@@ -101,7 +137,7 @@ const Navbar = () => {
                         color="inherit"
                         onClick={handleClose}
                     >
-                        <CloseIcon/>
+                        <CloseIcon />
                     </IconButton>
                 </div>
                 }
@@ -122,7 +158,7 @@ const Navbar = () => {
                 <BottomNavigationAction component={Link} href="/portfolio/resume" value="i" label="Resume" icon={<InsertDriveFileOutlinedIcon />} />
             </BottomNavigation>}
             <nav className="top-nav">
-                <div className="w-full"><Link className={`logo-txt ${ pathname !== '/'? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link></div>
+                <div className="w-full"><Link className={`logo-txt ${pathname !== '/' ? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link></div>
                 <div className="flex align-center">
                     {ltmed ? darkmodebtn() : <></>}
                     <div onClick={handleClick} className="profile-circle cursor-pointer">

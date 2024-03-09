@@ -23,6 +23,21 @@ export const Player = (props) => {
       }
       const player = (playerRef.current = videojs(videoElement, {
         ...options,
+        preload: "auto",
+        fluid: false,
+        techOrder: ["html5"],
+        html5: {
+          vhs: {
+              withCredentials: true,
+              cacheEncryptionKeys: true,
+              overrideNative: true,
+              maxPlaylistRetries: 2
+          },
+          nativeVideoTracks: false,
+          nativeAudioTracks: false,
+          nativeTextTracks: false
+      },
+      nativeControlsForTouch: false
       }, () => {
         videojs.log("player is ready");
         onReady && onReady(player);

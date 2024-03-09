@@ -17,7 +17,7 @@ const Home = () => {
   return (<section className={`page-container  ${rendered ? 'page-animation' : 'initial-animation'} `}>
     <div className='about-container'>
       <div className='w-fit'>
-        <h1 className='text-wrap font-medium type-heading heading-animation'>Hello,This is project Exibit.H </h1>
+        <h1 className='whitespace-pre-wrap font-medium type-heading heading-animation'>Hello,This is project Exibit.H </h1>
       </div>
       <br></br>
       <p className='text-lg animate-container'>&ldquo;Exibit.H, a web application crafted by Shanephear John Cleetus, serves as a captivating
