@@ -73,21 +73,23 @@ const Navbar = () => {
         console.log(pathname)
         if (pathname == '/') {
             SetEicon(true)
+            setEText((exibit_icon_text + 1)%3)
             SetMessage("The Application is built using <span>Next.js</span> a react framework, <span>Tailwind</span> for css, <span>Material ui</span> for components and design inspired from <span>Material 3</span>.")
         }
         else if (pathname == '/wasm') {
             SetEicon(true)
+            setEText((exibit_icon_text + 1)%3)
             SetMessage("The Web Assembly project is built using <span>emscripten</span> for transpiling C program to <span>web assembly</span>, <span>pyodide</span> which is a client side library built using emscripten to transpile python and <span>Monaco editor</span> for code editing.")
         }
         else if (pathname == '/video') {
             SetEicon(true)
+            setEText((exibit_icon_text + 1)%3)
             SetMessage("The HLS Video Streaming project is built using <span>video.js</span> library for client side video rendering , <span>Django</span> for backend , <span>sqllite 3</span> for database, <span>ffmpeg</span> to perform video transcoding and the backend is available through a <span>Docker</span> image in docker hub.")
         }
         else {
             SetEicon(false)
             SetMessage('')
         }
-        setEText((exibit_icon_text + 1)%3)
     }, [pathname])
     const toggleDarkMode = () => {
         colorMode.toggleColorMode();
