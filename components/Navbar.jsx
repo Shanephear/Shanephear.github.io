@@ -70,7 +70,6 @@ const Navbar = () => {
         };
     }, []);
     useEffect(() => {
-        console.log(pathname)
         if (pathname == '/') {
             SetEicon(true)
             setEText((exibit_icon_text + 1)%3)
