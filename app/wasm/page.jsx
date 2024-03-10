@@ -19,8 +19,7 @@ const Wasm = () => {
     const [pyodide_output, setPyodideOutput] = useState([])
     const [wasm_initialized, setWasmLoading] = useState(false)
     const [wasm_functions, setWasmFunction] = useState(null)
-    const editorRef = useRef(null);
-    const videoJsOptions = {
+    const [videoJsOptions, setVideoJsOption] = useState({
         autoplay: true,
         controls: true,
         loop: true,
@@ -31,7 +30,8 @@ const Wasm = () => {
                 type: "application/x-mpegURL",
             },
         ],
-    };
+    })
+    const editorRef = useRef(null);
     useEffect(() => {
         if (typeof window != undefined && window.pyodideloaded) {
             setLoadingPyodide(true)
@@ -48,7 +48,7 @@ const Wasm = () => {
                     window.pyodideloaded = true
                     window.pyodide = d
                     setLoadingPyodide(true)
-                }).catch(_ => {})
+                }).catch(_ => { })
             }
             document.head.appendChild(script);
         }
@@ -79,11 +79,9 @@ const Wasm = () => {
         const modified_python_code = python_code.replace(/input\(["'](.*?)["']\)/g, (match, text) => {
             return "input()"
         })
-        window.pyodide.runPythonAsync(modified_python_code).then(() => {
+        window.pyodide.runPythonAsync(modified_python_code).catch((e) => {
+            setPyodideError(e.message)
         })
-            .catch((e) => {
-                setPyodideError(e.message)
-            })
     }
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
