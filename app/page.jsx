@@ -22,8 +22,8 @@ const Home = () => {
       <br></br>
       <p className='text-lg animate-container'>&ldquo;Exibit.H, a web application crafted by Shanephear John Cleetus, serves as a captivating
         showcase for all my projects. The name &prime;Exibit.H&prime; cleverly combines &prime;exhibit&prime; with a touch of uniqueness,
-        reflecting the platform&prime;s purpose. Explore this immersive space curated by me to experience a comprehensive presentation of my work,
-        seamlessly presented and easily accessible in one centralized location.&rdquo;</p>
+        reflecting the platform&prime;s purpose. Explore this space curated by me to experience a comprehensive presentation of my work,
+        easily accessible in one centralized location.&rdquo;</p>
     </div>
     <div className='contents-container animate-container-2 flex flex-col gap-16'>
       {/* Portfolio */}

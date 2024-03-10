@@ -1,5 +1,5 @@
 "use client"
-import { BottomNavigation, BottomNavigationAction, IconButton, Snackbar,Button } from "@mui/material"
+import { BottomNavigation, BottomNavigationAction, IconButton, Snackbar, Button } from "@mui/material"
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { ColorModeContext, questrial } from "@components/themeregistry";
@@ -20,11 +20,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
-  });
+});
 const Navbar = () => {
     const [state, setState] = React.useState(false)
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -41,6 +43,10 @@ const Navbar = () => {
 
     const colorMode = React.useContext(ColorModeContext);
     const pathname = usePathname();
+    const [exibit_message, SetMessage] = useState('')
+    const ex_icon_text = 'Exibit'
+    const [exibit_icon, SetEicon] = useState(false)
+    const [exibit_icon_text, setEText] = useState(-1)
     const checkpath = (path) => {
         if (path == pathname) {
             return 'var(--text-color-level1)'
@@ -63,6 +69,26 @@ const Navbar = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    useEffect(() => {
+        console.log(pathname)
+        if (pathname == '/') {
+            SetEicon(true)
+            SetMessage("The Application is built using <span>Next.js</span> a react framework, <span>Tailwind</span> for css, <span>Material ui</span> for components and design inspired from <span>Material 3</span>.")
+        }
+        else if (pathname == '/wasm') {
+            SetEicon(true)
+            SetMessage("The Web Assembly project is built using <span>emscripten</span> for transpiling C program to <span>web assembly</span>, <span>pyodide</span> which is a client side library built using emscripten to transpile python and <span>Monaco editor</span> for code editing.")
+        }
+        else if (pathname == '/video') {
+            SetEicon(true)
+            SetMessage("The HLS Video Streaming project is built using <span>video.js</span> library for client side video rendering , <span>Django</span> for backend , <span>sqllite 3</span> for database, <span>ffmpeg</span> to perform video transcoding and the backend is available through a <span>Docker</span> image in docker hub.")
+        }
+        else {
+            SetEicon(false)
+            SetMessage('')
+        }
+        setEText((exibit_icon_text + 1)%3)
+    }, [pathname])
     const toggleDarkMode = () => {
         colorMode.toggleColorMode();
         const theme = document.documentElement.getAttribute('data-theme');
@@ -72,14 +98,14 @@ const Navbar = () => {
     const darkmodebtn = () => {
         return (
             <>
-                <Tooltip title="About the application" placement="right" arrow>
-                    <IconButton onClick={() => {setDialogOpen(true)}} sx={ltmed ? { marginRight: '1rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '1rem', borderRadius: '50% !important' }}>
+                {exibit_icon && <Tooltip title="About the application" placement="right" arrow>
+                    <IconButton onClick={() => { setDialogOpen(true) }} sx={ltmed ? { marginRight: '0.5rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '1rem', borderRadius: '50% !important' }}>
                         {/* <TipsAndUpdatesIcon color="primary" className="nav-icon-exibit"></TipsAndUpdatesIcon> */}
-                        <div className="nav-icon-exibit">t.H</div>
+                        <div className="nav-icon-exibit">{ex_icon_text[exibit_icon_text]}.H</div>
                     </IconButton>
-                </Tooltip>
+                </Tooltip>}
                 <Tooltip title="Toggle Dark mode" placement="right" arrow>
-                    <IconButton onClick={toggleDarkMode} sx={ltmed ? { marginRight: '1rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '2rem', borderRadius: '50% !important' }}>
+                    <IconButton onClick={toggleDarkMode} sx={ltmed ? { marginRight: '0.5rem' } : { border: '1px solid var(--text-color-level3)', marginBottom: '2rem', borderRadius: '50% !important' }}>
                         {isDarkMode ? <LightModeIcon color="primary" className="nav-icon" /> : <DarkModeIcon color="primary" className="nav-icon" />}
                     </IconButton>
                 </Tooltip>
@@ -106,18 +132,18 @@ const Navbar = () => {
                 open={dialogOpen}
                 TransitionComponent={Transition}
                 keepMounted
-                onClose={() => {setDialogOpen(false)}}
+                onClose={() => { setDialogOpen(false) }}
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle><span className="logo-text-gradient text-2xl">Exibit.H</span></DialogTitle>
+                {/* <DialogTitle><span className="logo-text-gradient text-2xl">Exibit.H</span></DialogTitle> */}
                 <DialogContent>
-                    <DialogContentText>
-                        The Application is built using Next.js a react framework, Tailwind for css, Material ui for components and
-                            design inspired from Material 3.
-                    </DialogContentText>
+                    <p className="text-sm pb-4 text-color-level-2">Note: This Dialog box tells how the page/application is exhibited</p>
+                    <p className="exibit-lines" dangerouslySetInnerHTML={{ __html: exibit_message }} />
                 </DialogContent>
-                <DialogActions className="p-4">
-                    <Button variant="outlined" onClick={() => {setDialogOpen(false)}}>Close</Button>
+                <DialogActions>
+                    <div className="pr-4 pb-2">
+                        <Button variant="outlined" onClick={() => { setDialogOpen(false) }}>Close</Button>
+                    </div>
                 </DialogActions>
             </Dialog>
             <Snackbar
@@ -156,6 +182,7 @@ const Navbar = () => {
                 <BottomNavigationAction component={Link} href="/portfolio/about" value="p" label="About" icon={<PersonOutlineOutlinedIcon />} />
                 <BottomNavigationAction component={Link} href="/portfolio/experience" value="w" label="Experience" icon={<WorkOutlineOutlinedIcon />} />
                 <BottomNavigationAction component={Link} href="/portfolio/resume" value="i" label="Resume" icon={<InsertDriveFileOutlinedIcon />} />
+                <BottomNavigationAction component={Link} href="/portfolio/certifications" value="c" label="Certifications" icon={<CardMembershipOutlinedIcon />} />
             </BottomNavigation>}
             <nav className="top-nav">
                 <div className="w-full"><Link className={`logo-txt ${pathname !== '/' ? 'logo-text-gradient' : ''}`} href="/">Exibit.H</Link></div>
@@ -187,6 +214,11 @@ const Navbar = () => {
                     <Tooltip title="Resume" placement="right" arrow>
                         <IconButton component={Link} href="/portfolio/resume" sx={{ color: checkpath("/portfolio/resume") }}>
                             <InsertDriveFileOutlinedIcon className="nav-icon" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Certifications" placement="right" arrow>
+                        <IconButton component={Link} href="/portfolio/certifications" sx={{ color: checkpath("/portfolio/certifications") }}>
+                            <CardMembershipOutlinedIcon className="nav-icon" />
                         </IconButton>
                     </Tooltip>
                 </div></div> : <div></div>}

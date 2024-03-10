@@ -25,6 +25,7 @@
         --text-color-level1: #E3E3E3;
         --text-color-level2: #A0A0A0;
         --text-color-level3: #707070;
+        --dialog-color: black;
 
     }
 
@@ -40,6 +41,7 @@
         --text-color-level1: #2E2E2E;
         --text-color-level2: #5f6367;
         --text-color-level3: #8b8d8b;
+        --dialog-color: #ffffff;
     }
 }
 
@@ -83,7 +85,11 @@ html {
 
 p {
     font-size: 1rem;
-    line-height: 1.7rem;
+    line-height: 1.6rem;
+}
+.p-important{
+    font-size: 1rem !important;
+    line-height: 1.6rem !important;
 }
 
 h5 {
@@ -893,4 +899,38 @@ button.portfolio {
         border-radius: 24px;
         border: 1px solid;
     }
+}
+
+.certification-card-parent {
+    border-radius: 24px !important;
+    background: transparent !important;
+    .certi-icon-container {
+        padding: 1rem;
+        border-right: 1px solid var(--text-color-level2);
+    }
+    .certi-icon {
+        font-size: 85px !important;
+        color: var(--text-color-level3);
+    }
+    .certification-card {
+        border: 1px solid var(--text-color-level3);
+        border-radius: 24px;
+    }
+}
+
+.exibit-lines
+{
+    span {
+        color: transparent;
+        background: linear-gradient(74deg, #4285f4 0, #9b72cb 9%, #d96570 20%, #d96570 24%, #9b72cb 35%, #4285f4 44%, #9b72cb 50%, #d96570 56%, #232323 75%, #232323 100%);
+        background-size: 300px 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        font-weight: 500;
+    }
+}
+
+.MuiDialog-container > div {
+    border-radius: 24px;
+    background-color: var(--dialog-color);
 }
