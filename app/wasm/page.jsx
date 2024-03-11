@@ -34,6 +34,7 @@ const Wasm = () => {
     const editorRef = useRef(null);
     useEffect(() => {
         if (typeof window != undefined && window.pyodideloaded) {
+            window.pyodide.setStdout({batched: (msg) => print_output(msg)})
             setLoadingPyodide(true)
         }
         else {
@@ -53,6 +54,7 @@ const Wasm = () => {
             document.head.appendChild(script);
         }
         if (typeof window != undefined && window.wasmloaded) {
+            setWasmFunction(Module)
             setWasmLoading(true)
         }
         else {
